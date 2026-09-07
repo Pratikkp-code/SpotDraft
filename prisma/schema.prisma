@@ -1,0 +1,62 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  pdfs         Pdf[]
+}
+
+model Pdf {
+  id            String        @id @default(cuid())
+  ownerId       String
+  owner         User          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  filename      String
+  storagePath   String        // path in Supabase bucket
+  extractedText String        @db.Text
+  summary       String?       @db.Text
+  shareToken    String        @unique @default(cuid())
+  uploadedAt    DateTime      @default(now())
+  comments      Comment[]
+  chatMessages  ChatMessage[]
+  chunks        PdfChunk[]
+}
+
+model PdfChunk {
+  id         String   @id @default(cuid())
+  pdfId      String
+  pdf        Pdf      @relation(fields: [pdfId], references: [id], onDelete: Cascade)
+  chunkIndex Int
+  content    String   @db.Text
+}
+
+model Comment {
+  id           String   @id @default(cuid())
+  pdfId        String
+  pdf          Pdf      @relation(fields: [pdfId], references: [id], onDelete: Cascade)
+  authorUserId String?  // set if commenter is a logged-in owner/user
+  authorName   String   // display name — pulled from User, or typed by invited guest
+  content      String   @db.Text
+  parentId     String?  // threaded replies
+  createdAt    DateTime @default(now())
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  pdfId     String
+  pdf       Pdf      @relation(fields: [pdfId], references: [id], onDelete: Cascade)
+  viewerId  String   // authenticated user's id, OR random UUID in anon cookie for invited guests
+  role      String   // "user" | "assistant"
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+}
