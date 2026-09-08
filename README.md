@@ -7,7 +7,7 @@ Klyro is an enterprise-grade document intelligence and real-time collaboration a
 ## 🚀 Live App & Walkthrough
 
 - **Live Deployment:** [Deployed on Vercel](https://klyro-six.vercel.app/)
-- **Video Walkthrough:** [Loom / Demo Walkthrough](https://loom.com)
+- **Video Walkthrough:** [YouTube](https://youtu.be/Hzs9ji8YPjk)
 
 ---
 
