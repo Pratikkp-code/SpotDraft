@@ -3,6 +3,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { FileText, Sparkles, MessageSquare, Users, ShieldCheck, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Logo from "./Logo.png";
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
@@ -14,30 +16,44 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-[#090909] text-white flex flex-col justify-between selection:bg-[#0099ff]/30 selection:text-[#0099ff]">
       {/* Navbar */}
-      <header className="border-b border-[#262626] bg-[#090909]/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold text-xs shadow-md">
-              <FileText className="w-4 h-4" />
-            </div>
-            <span className="font-bold text-base text-white tracking-tight">Klyro</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link
-              href="/login"
-              className="px-4 py-2 text-xs font-medium text-[#999999] hover:text-white transition-colors"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/signup"
-              className="px-4 py-2 text-xs font-medium text-black bg-white hover:bg-neutral-200 rounded-full transition-all flex items-center gap-1.5 shadow-lg shadow-white/5"
-            >
-              Get Started <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-        </div>
-      </header>
+<header className="border-b border-[#262626] bg-[#090909]/80 backdrop-blur-md sticky top-0 z-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+    
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden shadow-md">
+        <Image
+          src={Logo}
+          alt="Klyro logo"
+          width={32}
+          height={32}
+          className="object-contain"
+        />
+      </div>
+
+      <span className="font-bold text-base text-white tracking-tight">
+        Klyro
+      </span>
+    </div>
+
+    <div className="flex items-center gap-3">
+      <Link
+        href="/login"
+        className="px-4 py-2 text-xs font-medium text-[#999999] hover:text-white transition-colors"
+      >
+        Sign In
+      </Link>
+
+      <Link
+        href="/signup"
+        className="px-4 py-2 text-xs font-medium text-black bg-white hover:bg-neutral-200 rounded-full transition-all flex items-center gap-1.5 shadow-lg shadow-white/5"
+      >
+        Get Started
+        <ArrowRight className="w-3.5 h-3.5" />
+      </Link>
+    </div>
+
+  </div>
+</header>
 
       {/* Hero Section */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-20 text-center max-w-4xl mx-auto">
