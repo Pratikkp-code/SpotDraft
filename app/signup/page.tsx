@@ -5,6 +5,8 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FileText, Lock, Mail, User, ArrowRight, AlertCircle, Loader2 } from "lucide-react";
+import Image from "next/image";
+import Logo from "../Logo.png";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -65,7 +67,13 @@ export default function SignupPage() {
       <div className="w-full max-w-md space-y-8 bg-[#141414] p-8 rounded-2xl border border-[#262626] shadow-2xl">
         <div className="text-center space-y-2">
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-black mb-2 shadow-md">
-            <FileText className="w-5 h-5" />
+            <Image
+              src={Logo}
+              alt="Klyro logo"
+              width={32}
+              height={32}
+              className="object-contain"
+            />
           </div>
           <h2 className="text-2xl font-bold tracking-tight text-white">
             Create your account
