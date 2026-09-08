@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${inter.className} min-h-full flex flex-col bg-slate-950 text-slate-100 antialiased`}>
+      <body className={`${inter.className} min-h-full flex flex-col bg-[#090909] text-white antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

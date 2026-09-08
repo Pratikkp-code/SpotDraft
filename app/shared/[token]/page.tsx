@@ -62,26 +62,26 @@ export default function SharedGuestPdfPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center text-slate-400">
-        <Loader2 className="w-8 h-8 animate-spin text-indigo-500" />
+      <div className="min-h-screen bg-[#090909] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-[#0099ff]" />
       </div>
     );
   }
 
   if (error || !pdf) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4 text-center">
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 max-w-md w-full space-y-4">
-          <div className="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 flex items-center justify-center mx-auto">
+      <div className="min-h-screen bg-[#090909] flex flex-col items-center justify-center p-4 text-center">
+        <div className="bg-[#141414] border border-[#262626] rounded-2xl p-8 max-w-md w-full space-y-4">
+          <div className="w-12 h-12 rounded-full bg-rose-500/10 text-rose-400 flex items-center justify-center mx-auto">
             <Shield className="w-6 h-6" />
           </div>
           <h3 className="text-lg font-bold text-white">Document Unavailable</h3>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-[#999999]">
             {error || "The link may have expired or is invalid."}
           </p>
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 text-white text-xs font-semibold rounded-xl"
+            className="inline-flex items-center gap-1.5 px-4 py-2 bg-white text-black text-xs font-semibold rounded-full"
           >
             Go to DocuMind Home
           </Link>
@@ -91,33 +91,33 @@ export default function SharedGuestPdfPage({
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#090909] text-white flex flex-col selection:bg-[#0099ff]/30 selection:text-[#0099ff]">
       {/* Top Navbar */}
-      <header className="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <header className="border-b border-[#262626] bg-[#090909]/80 backdrop-blur-md sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-9 h-9 rounded-xl bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center shrink-0">
-              <FileText className="w-5 h-5" />
+            <div className="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+              <FileText className="w-4 h-4" />
             </div>
             <div className="min-w-0">
               <h1 className="text-sm sm:text-base font-bold text-white truncate" title={pdf.filename}>
                 {pdf.filename}
               </h1>
-              <span className="text-[11px] text-slate-400 flex items-center gap-1">
-                Shared by <strong className="text-slate-300">{pdf.ownerName}</strong>
+              <span className="text-[11px] text-[#999999] flex items-center gap-1">
+                Shared by <strong className="text-white">{pdf.ownerName}</strong>
               </span>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-800/40 text-[11px] font-medium text-emerald-400">
+            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#141414] border border-[#262626] text-[11px] font-medium text-emerald-400">
               <Users className="w-3.5 h-3.5" />
               <span>Guest Collaboration Mode</span>
             </div>
 
             <Link
               href="/signup"
-              className="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 rounded-xl text-xs font-medium transition-all flex items-center gap-1.5"
+              className="px-3.5 py-1.5 bg-[#141414] hover:bg-[#1c1c1c] text-white border border-[#262626] rounded-full text-xs font-medium transition-all flex items-center gap-1.5"
             >
               <span>Create Account</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -128,13 +128,13 @@ export default function SharedGuestPdfPage({
 
       {/* Main Workspace Layout */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        {/* Executive Summary Card at Top */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-xl backdrop-blur-md">
-          <div className="flex items-center gap-2 mb-2 text-indigo-400 text-xs font-semibold uppercase tracking-wider">
+        {/* Executive Summary — Gradient Spotlight Card */}
+        <div className="bg-gradient-to-br from-[#6a4cf5]/20 via-[#141414] to-[#d44df0]/10 border border-[#262626] rounded-[30px] p-6 shadow-xl">
+          <div className="flex items-center gap-2 mb-2 text-[#0099ff] text-xs font-semibold uppercase tracking-wider">
             <Sparkles className="w-4 h-4" />
             <span>AI Executive Summary (Gemini 1.5 Flash)</span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-200 leading-relaxed select-text">
+          <p className="text-xs sm:text-sm text-white/90 leading-relaxed select-text">
             {pdf.summary || "Summary generation in progress."}
           </p>
         </div>
@@ -153,13 +153,13 @@ export default function SharedGuestPdfPage({
           {/* Right Column: Tabbed Chat & Comments */}
           <div className="lg:col-span-5 flex flex-col h-[650px] sm:h-[750px]">
             {/* Panel Tabs */}
-            <div className="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800 mb-3">
+            <div className="flex items-center bg-[#141414] p-1 rounded-full border border-[#262626] mb-3">
               <button
                 onClick={() => setActiveTab("chat")}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex-1 flex items-center justify-center gap-2 py-2 text-xs font-semibold rounded-full transition-all ${
                   activeTab === "chat"
-                    ? "bg-indigo-600 text-white shadow-md"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-[#1c1c1c] text-white shadow-md"
+                    : "text-[#999999] hover:text-white"
                 }`}
               >
                 <Bot className="w-3.5 h-3.5" />
@@ -167,10 +167,10 @@ export default function SharedGuestPdfPage({
               </button>
               <button
                 onClick={() => setActiveTab("comments")}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex-1 flex items-center justify-center gap-2 py-2 text-xs font-semibold rounded-full transition-all ${
                   activeTab === "comments"
-                    ? "bg-indigo-600 text-white shadow-md"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-[#1c1c1c] text-white shadow-md"
+                    : "text-[#999999] hover:text-white"
                 }`}
               >
                 <MessageSquare className="w-3.5 h-3.5" />

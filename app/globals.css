@@ -1,31 +1,56 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020617;
-  --foreground: #f8fafc;
+  --canvas: #090909;
+  --surface-1: #141414;
+  --surface-2: #1c1c1c;
+  --hairline: #262626;
+  --hairline-soft: #1a1a1a;
+  --accent-blue: #0099ff;
+  --ink: #ffffff;
+  --ink-muted: #999999;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--canvas);
+  color: var(--ink);
   min-height: 100vh;
+  font-feature-settings: "cv01" 1, "cv05" 1, "cv09" 1, "cv11" 1, "ss03" 1, "ss07" 1;
 }
 
-/* Custom scrollbars for clean UI */
+/* Framer negative tracking utility classes */
+.tracking-poster-xxl {
+  letter-spacing: -5.5px;
+}
+
+.tracking-poster-xl {
+  letter-spacing: -4.25px;
+}
+
+.tracking-poster-lg {
+  letter-spacing: -3.1px;
+}
+
+.tracking-poster-md {
+  letter-spacing: -1.0px;
+}
+
+/* Custom sleek scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #090909;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #262626;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #333333;
 }
+

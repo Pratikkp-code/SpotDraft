@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { UploadCloud, FileText, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Upload, FileText, Loader2, AlertCircle, CheckCircle2, FileCheck, Sparkles } from "lucide-react";
 
 interface UploadFormProps {
   onUploadSuccess?: () => void;
@@ -99,117 +99,96 @@ export function UploadForm({ onUploadSuccess }: UploadFormProps) {
   };
 
   return (
-    <div className="w-full bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-md">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-2xl max-w-2xl mx-auto space-y-4">
+      <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-base font-semibold text-white flex items-center gap-2">
-            <UploadCloud className="w-5 h-5 text-indigo-400" />
-            Upload Document
-          </h3>
-          <p className="text-xs text-slate-400 mt-0.5">
-            PDF documents up to 20MB. AI will automatically summarize and index.
+          <h3 className="text-sm font-semibold text-white">Upload PDF Document</h3>
+          <p className="text-xs text-[#999999] mt-0.5">
+            Indexed automatically for instant AI executive summary & grounded chat
           </p>
         </div>
       </div>
 
       {error && (
-        <div className="flex items-center gap-2.5 p-3 mb-4 text-xs text-rose-400 bg-rose-950/40 border border-rose-800/50 rounded-xl">
+        <div className="flex items-center gap-3 p-3 text-xs text-rose-400 bg-rose-950/30 border border-rose-900/50 rounded-xl">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      {success && (
-        <div className="flex items-center gap-2.5 p-3 mb-4 text-xs text-emerald-400 bg-emerald-950/40 border border-emerald-800/50 rounded-xl">
-          <CheckCircle2 className="w-4 h-4 shrink-0" />
-          <span>{statusMessage}</span>
-        </div>
-      )}
-
+      {/* Drag & Drop Area */}
       <div
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onClick={() => !uploading && fileInputRef.current?.click()}
-        className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all ${
+        onClick={() => fileInputRef.current?.click()}
+        className={`border-2 border-dashed rounded-2xl p-8 text-center transition-all cursor-pointer flex flex-col items-center justify-center space-y-3 ${
           isDragging
-            ? "border-indigo-500 bg-indigo-950/20"
-            : "border-slate-800 hover:border-slate-700 bg-slate-950/50"
-        } ${uploading ? "opacity-60 cursor-not-allowed" : ""}`}
+            ? "border-[#0099ff] bg-[#0099ff]/5"
+            : selectedFile
+            ? "border-emerald-500/50 bg-emerald-950/10"
+            : "border-[#262626] bg-[#090909] hover:border-[#0099ff]/50"
+        }`}
       >
         <input
-          ref={fileInputRef}
           type="file"
+          ref={fileInputRef}
           accept="application/pdf"
-          className="hidden"
           onChange={handleFileChange}
-          disabled={uploading}
+          className="hidden"
         />
 
+        <div className="w-12 h-12 rounded-full bg-[#141414] border border-[#262626] flex items-center justify-center text-[#0099ff]">
+          {selectedFile ? <FileCheck className="w-6 h-6 text-emerald-400" /> : <Upload className="w-6 h-6" />}
+        </div>
+
         {selectedFile ? (
-          <div className="flex flex-col items-center">
-            <div className="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center mb-3">
-              <FileText className="w-6 h-6" />
-            </div>
-            <p className="text-sm font-medium text-white max-w-xs truncate">
+          <div className="space-y-1">
+            <p className="text-xs font-semibold text-white truncate max-w-xs">
               {selectedFile.name}
             </p>
-            <p className="text-xs text-slate-400 mt-1">
-              {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB
-            </p>
-            <p className="text-xs text-indigo-400 mt-2 font-medium">
-              Click &apos;Upload & Summarize&apos; to begin
+            <p className="text-[10px] text-emerald-400 font-mono">
+              {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • Ready for analysis
             </p>
           </div>
         ) : (
-          <div className="flex flex-col items-center">
-            <div className="w-12 h-12 rounded-xl bg-slate-800/80 text-slate-400 flex items-center justify-center mb-3">
-              <UploadCloud className="w-6 h-6" />
-            </div>
-            <p className="text-sm font-medium text-slate-200">
-              Drag and drop your PDF here, or{" "}
-              <span className="text-indigo-400 underline underline-offset-4">
-                browse files
-              </span>
+          <div className="space-y-1">
+            <p className="text-xs font-medium text-white">
+              Drag & drop your PDF contract or report here
             </p>
-            <p className="text-xs text-slate-500 mt-1">
-              Supports agreements, reports, whitepapers, manuals
+            <p className="text-[11px] text-[#999999]">
+              Or click to browse files from your computer (Max 16MB)
             </p>
           </div>
         )}
       </div>
 
+      {/* Action Submit */}
       {selectedFile && (
-        <div className="mt-4 flex items-center justify-end gap-3">
+        <div className="flex items-center justify-end gap-3 pt-2">
           <button
             type="button"
+            onClick={() => setSelectedFile(null)}
             disabled={uploading}
-            onClick={(e) => {
-              e.stopPropagation();
-              setSelectedFile(null);
-            }}
-            className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-white transition-colors"
+            className="px-4 py-2 text-xs font-medium text-[#999999] hover:text-white transition-colors"
           >
-            Cancel
+            Clear Selection
           </button>
           <button
             type="button"
+            onClick={handleUpload}
             disabled={uploading}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleUpload();
-            }}
-            className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white rounded-xl text-xs font-semibold shadow-lg shadow-indigo-600/20 transition-all flex items-center gap-2 cursor-pointer"
+            className="px-6 py-2.5 bg-white hover:bg-neutral-200 disabled:opacity-50 text-black text-xs font-semibold rounded-full shadow-lg transition-all flex items-center gap-2 cursor-pointer"
           >
             {uploading ? (
               <>
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                <span>{statusMessage || "Processing..."}</span>
+                <Loader2 className="w-4 h-4 animate-spin text-black" />
+                <span>Processing Document...</span>
               </>
             ) : (
               <>
-                <UploadCloud className="w-3.5 h-3.5" />
-                <span>Upload & Summarize</span>
+                <Sparkles className="w-4 h-4" />
+                <span>Upload & Generate AI Summary</span>
               </>
             )}
           </button>
