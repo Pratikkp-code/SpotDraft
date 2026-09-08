@@ -6,7 +6,7 @@ import { Providers } from "@/components/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DocuMind | PDF Intelligence & Collaboration",
+  title: "Klyro | PDF Intelligence & Collaboration",
   description:
     "AI-powered document intelligence, smart summaries, grounded chat with memory, and real-time collaborative commenting.",
 };
