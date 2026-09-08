@@ -17,6 +17,8 @@ import {
   ExternalLink,
   ShieldAlert,
 } from "lucide-react";
+import Image from "next/image";
+import Logo from "../Logo.png";
 
 interface PdfItem {
   id: string;
@@ -103,10 +105,16 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold text-xs shadow-md">
-              <FileText className="w-4 h-4" />
+              <Image
+                src={Logo}
+                alt="Klyro logo"
+                width={32}
+                height={32}
+                className="object-contain"
+              />
             </div>
             <span className="font-bold text-base text-white tracking-tight">
-              DocuMind
+              Klyro
             </span>
           </div>
 
