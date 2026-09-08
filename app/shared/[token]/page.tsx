@@ -16,7 +16,7 @@ import { PdfViewer } from "@/components/PdfViewer";
 import { CommentPanel } from "@/components/CommentPanel";
 import { ChatPanel } from "@/components/ChatPanel";
 import Image from "next/image";
-import Logo from "../Logo.png";
+import Logo from "../../Logo.png";
 
 interface SharedPdfData {
   id: string;
