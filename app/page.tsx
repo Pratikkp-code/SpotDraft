@@ -20,7 +20,7 @@ export default async function HomePage() {
             <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold text-xs shadow-md">
               <FileText className="w-4 h-4" />
             </div>
-            <span className="font-bold text-base text-white tracking-tight">DocuMind</span>
+            <span className="font-bold text-base text-white tracking-tight">Klyro</span>
           </div>
           <div className="flex items-center gap-3">
             <Link
@@ -111,7 +111,7 @@ export default async function HomePage() {
 
       {/* Footer */}
       <footer className="border-t border-[#262626] py-8 text-center text-xs text-[#999999]">
-        DocuMind — Enterprise-grade PDF Intelligence and Collaboration
+        Klyro — Enterprise-grade PDF Intelligence and Collaboration
       </footer>
     </div>
   );
